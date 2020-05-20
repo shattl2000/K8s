@@ -1,0 +1,15 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: nginx-nfs-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: "/"
+spec:
+  rules:
+  - host: k8s.dvslab.local
+    http:
+      paths:
+      - path: "/nginx-nfs"
+        backend:
+          serviceName: nginx-nfs-svc
+          servicePort: 80
